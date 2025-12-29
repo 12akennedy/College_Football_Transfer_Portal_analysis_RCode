@@ -1,13 +1,11 @@
-library(googlesheets4)
 library(MASS)
 library(tidyr)
 library(dplyr)
 library(rpart)
-library(rpart.plot)
 library(ggplot2)
 library(ISLR)
 library(caTools)
-library(randomForest)
+
 
 
 defense_cols <- c("year","player","player_id","position","team_name",
@@ -94,5 +92,3 @@ mw.remain$Poached <- ifelse(mw.remain$Type_2024 == "P4", "Left for P4",
 
 as.data.frame(table(mw.remain$QualityPlayer, mw.remain$Poached))
 aggregate(cbind(snap_counts_2023, grades_2023) ~ QualityPlayer + Poached, data = mw.remain, FUN = mean)
-
-sheet_write(mw.remain, ss ="https://docs.google.com/spreadsheets/d/1g5emCedRaMToftgzvgjyhxs3ScNCatinQ1sfMAAn-kA/edit?gid=920346476#gid=920346476", sheet = "MW_Remain")
